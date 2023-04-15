@@ -3,6 +3,7 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 import os
+import errno
 
 def upload_file():
     uploaded_file = st.file_uploader('Choose your .pdf file', type="pdf")
@@ -17,8 +18,13 @@ def upload_file():
 
     # Save uploaded file to 'F:/tmp' folder.
         save_folder = './temp'
-        if not os.path.exists(save_folder):
+        try:
             os.mkdir(save_folder)
+        except OSError as e:
+            if e.errno == errno.EEXIST:
+                print('Directory not created.')
+            else:
+                raise
         save_path = Path(save_folder, uploaded_file.name)
         with open(save_path, mode='wb') as w:
             w.write(uploaded_file.getvalue())
