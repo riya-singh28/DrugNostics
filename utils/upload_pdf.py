@@ -7,7 +7,7 @@ def upload_file():
     uploaded_file = st.file_uploader('Choose your .pdf file', type="pdf")
     user_input = st.text_input("Input Smiles")
 
-    print(uploaded_file)
+    st.info(uploaded_file)
 
     Submit = st.button(label='Submit')
 
