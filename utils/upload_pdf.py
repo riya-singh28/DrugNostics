@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import os
 import errno
+import requests
 
 def upload_file():
     uploaded_file = st.file_uploader('Choose your .pdf file', type="pdf")
@@ -31,10 +32,14 @@ def upload_file():
 
         if save_path.exists():
             st.success(f'File {uploaded_file.name} is successfully saved!')
-            st.info(os.getcwd())
-            st.info(os.system("ls"))
-            with open(save_path, "rb") as file:
-                st.download_button("download", file, mime="application/pdf")
+            url = 'http://34.125.142.75:8000/upload'
+            file = {'file': open(save_path, 'rb')}
+            resp = requests.post(url=url, files=file) 
+            print(resp.json())
+
+
+
+
 
 
 
