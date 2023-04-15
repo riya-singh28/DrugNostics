@@ -33,6 +33,8 @@ def upload_file():
             st.success(f'File {uploaded_file.name} is successfully saved!')
             st.info(os.getcwd())
             st.info(os.system("ls"))
+            with open(save_path, "rb") as file:
+                st.download_button("download", file, mime="application/pdf")
 
 
 
