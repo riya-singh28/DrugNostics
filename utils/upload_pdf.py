@@ -24,6 +24,8 @@ def upload_file():
 
         if save_path.exists():
             st.success(f'File {uploaded_file.name} is successfully saved!')
+            st.info(os.getcwd())
+            st.info(os.system("ls"))
 
 
 
