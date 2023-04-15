@@ -2,6 +2,7 @@ import streamlit as st
 from pathlib import Path
 import pandas as pd
 import numpy as np
+import os
 
 def upload_file():
     uploaded_file = st.file_uploader('Choose your .pdf file', type="pdf")
@@ -15,7 +16,8 @@ def upload_file():
         st.markdown("**The file is sucessfully Uploaded.**")
 
     # Save uploaded file to 'F:/tmp' folder.
-        save_folder = 'temp'
+        save_folder = './temp'
+        os.mkdir(save_folder)
         save_path = Path(save_folder, uploaded_file.name)
         with open(save_path, mode='wb') as w:
             w.write(uploaded_file.getvalue())
