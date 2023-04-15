@@ -17,7 +17,8 @@ def upload_file():
 
     # Save uploaded file to 'F:/tmp' folder.
         save_folder = './temp'
-        os.mkdir(save_folder)
+        if not os.path.exists(save_folder):
+            os.mkdir(save_folder)
         save_path = Path(save_folder, uploaded_file.name)
         with open(save_path, mode='wb') as w:
             w.write(uploaded_file.getvalue())
