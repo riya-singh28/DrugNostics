@@ -6,6 +6,8 @@ import os
 import errno
 import requests
 
+TOKEN = 987651234
+
 def upload_file():
     uploaded_file = st.file_uploader('Choose your .pdf file', type="pdf")
     user_input = st.text_input("Input Smiles")
@@ -32,7 +34,7 @@ def upload_file():
 
         if save_path.exists():
             st.success(f'File {uploaded_file.name} is successfully saved!')
-            url = 'http://34.125.142.75:8000/upload'
+            url = f'http://34.125.142.75:8000/{TOKEN}/upload'
             file = {'file': open(save_path, 'rb')}
             resp = requests.post(url=url, files=file) 
             print(resp.json())
