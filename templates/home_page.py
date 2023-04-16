@@ -11,15 +11,10 @@ def home_page():
     st.subheader("About Us")
     st.write("Welcome to DrugNostics. Our web app uses the latest in cheminformatics and machine learning to help researchers discover new drugs faster. By analyzing the chemical structure of existing drugs, we can generate a list of similar drug candidates. We also analyze patent data to identify new chemical structures that could be used for drug development. Our user-friendly tool is accessible to researchers from various backgrounds and has the potential to revolutionize the drug research field.")
     opt = st.radio("Do you have a smile already? ", ('Yes', 'No I have a pdf containing some chemical structures'))
-    smiles = []
     if opt == 'Yes':
-        smiles = []
-        smiles = [text_input()]
-        display_smiles(smiles_list=smiles)
+        text_input()
     else:
-        smiles = []
-        smiles = upload_file()
-        display_smiles(smiles_list=smiles)
+        upload_file()
 
     st.subheader("Authors")
     st.write("Riya Singh, EC Engg, National Institute of Technology Karnataka, India")
