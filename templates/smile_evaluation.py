@@ -70,7 +70,6 @@ def smile_evaluation():
         data = r.json()
         data = data['preds']
         data = np.asarray(data)
-        st.info(data)
         req_feat = data[index]
         feats_disc = np.asarray(feats)
         req_feats_disc = feats_disc[index]
