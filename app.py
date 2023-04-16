@@ -5,6 +5,7 @@ import numpy as np
 from templates.login import login
 from templates.signup import signup
 from templates.home_page import home_page
+from templates.smile_evaluation import smile_evaluation
 
 # DB Management
 import sqlite3
@@ -13,7 +14,7 @@ c = conn.cursor()
 # DB  Functions
 
 
-page_names_to_funcs = ['Main Page', 'Login', 'Sign-up']
+page_names_to_funcs = ['Main Page', 'Login', 'Sign-up', 'smile-evaluation']
 
 selected_page = st.sidebar.selectbox("Select a page", page_names_to_funcs)
 
@@ -25,4 +26,7 @@ elif selected_page == 'Login':
 
 elif selected_page == 'Sign-up':
     a = signup(c, conn)
+
+elif selected_page == 'smile-evaluation':
+    a = smile_evaluation()
 
