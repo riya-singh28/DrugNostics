@@ -3,6 +3,9 @@ import pandas as pd
 from PIL import Image
 from utils.upload_pdf import upload_file
 from utils.smiles_to_feature import text_input
+import requests
+
+TOKEN = 987651234
 
 def smile_evaluation():
     st.header('Smile Evaluation')
@@ -60,9 +63,7 @@ def smile_evaluation():
     
     Submit = st.button(label='Submit')
     if Submit:
-        if opt == 'Hepatobiliary disorders':
-            text_input()
-        elif opt == 'Log-scale water solubility' :
-            upload_file()
-
-
+        model_name = "SIDER_GCN"
+        r = requests.get(url = f'http://34.125.142.75:8009/{TOKEN}/{smile}/{model_name}')
+        data = r.json()
+        st.info(data['preds'])
