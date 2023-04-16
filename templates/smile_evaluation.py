@@ -68,6 +68,7 @@ def smile_evaluation():
         model_name = "SIDER_GCN"
         r = requests.get(url = f'http://34.125.142.75:8009/{TOKEN}/predict/{smile}/{model_name}')
         data = r.json()
+        data = data['preds']
         data = np.asarray(data)
         st.info(data)
         req_feat = data[index]
