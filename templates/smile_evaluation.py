@@ -4,8 +4,29 @@ from PIL import Image
 from utils.upload_pdf import upload_file
 from utils.smiles_to_feature import text_input
 import requests
+import numpy as np
 
 TOKEN = 987651234
+
+feats = ('Hepatobiliary disorders', 'Metabolism and nutrition disorders',
+       'Product issues', 'Eye disorders', 'Investigations',
+       'Musculoskeletal and connective tissue disorders',
+       'Gastrointestinal disorders', 'Social circumstances',
+       'Immune system disorders',
+       'Reproductive system and breast disorders',
+       'Neoplasms benign, malignant and unspecified (incl cysts and polyps)',
+       'General disorders and administration site conditions',
+       'Endocrine disorders', 'Surgical and medical procedures',
+       'Vascular disorders', 'Blood and lymphatic system disorders',
+       'Skin and subcutaneous tissue disorders',
+       'Congenital, familial and genetic disorders',
+       'Infections and infestations',
+       'Respiratory, thoracic and mediastinal disorders',
+       'Psychiatric disorders', 'Renal and urinary disorders',
+       'Pregnancy, puerperium and perinatal conditions',
+       'Ear and labyrinth disorders', 'Cardiac disorders',
+       'Nervous system disorders',
+       'Injury, poisoning and procedural complications')
 
 def smile_evaluation():
     st.header('Smile Evaluation')
@@ -32,25 +53,7 @@ def smile_evaluation():
        'Ear and labyrinth disorders', 'Cardiac disorders',
        'Nervous system disorders',
        'Injury, poisoning and procedural complications']
-    opt = st.multiselect("Select Features ", ('Hepatobiliary disorders', 'Metabolism and nutrition disorders',
-       'Product issues', 'Eye disorders', 'Investigations',
-       'Musculoskeletal and connective tissue disorders',
-       'Gastrointestinal disorders', 'Social circumstances',
-       'Immune system disorders',
-       'Reproductive system and breast disorders',
-       'Neoplasms benign, malignant and unspecified (incl cysts and polyps)',
-       'General disorders and administration site conditions',
-       'Endocrine disorders', 'Surgical and medical procedures',
-       'Vascular disorders', 'Blood and lymphatic system disorders',
-       'Skin and subcutaneous tissue disorders',
-       'Congenital, familial and genetic disorders',
-       'Infections and infestations',
-       'Respiratory, thoracic and mediastinal disorders',
-       'Psychiatric disorders', 'Renal and urinary disorders',
-       'Pregnancy, puerperium and perinatal conditions',
-       'Ear and labyrinth disorders', 'Cardiac disorders',
-       'Nervous system disorders',
-       'Injury, poisoning and procedural complications'))
+    opt = st.multiselect("Select Features ", feats)
     
     index = []
     for i in opt:
@@ -65,4 +68,10 @@ def smile_evaluation():
         model_name = "SIDER_GCN"
         r = requests.get(url = f'http://34.125.142.75:8009/{TOKEN}/predict/{smile}/{model_name}')
         data = r.json()
-        st.info(data['preds'])
+        data = np.asarray(data)
+        req_feat = data[index]
+        feats_disc = np.asarray(feats)
+        req_feats_disc = feats_disc[index]
+        dict = {'task': req_feats_disc, 'value': req_feat}
+        df = pd.DataFrame(dict)
+        st.dataframe(df)
