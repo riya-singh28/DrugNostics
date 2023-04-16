@@ -9,6 +9,8 @@ import time
 
 TOKEN = 987651234
 
+lst = []
+
 def upload_file():
     uploaded_file = st.file_uploader('Choose your .pdf file', type="pdf")
 
@@ -34,7 +36,14 @@ def upload_file():
             resp = requests.post(url=url, files=file)
             st.success(f'File {uploaded_file.name} is successfully saved!')
             data = get_extracted_smiles()
-            return data['smiles']
+            display_smiles(data['smiles'])
+
+@st.cache_data  
+def display_smiles(smiles_list):
+    # n = st.number_input("Enter number of elements : ", min_value=1, max_value=10, value=5, step=1)
+    lst.extend(smiles_list)
+    df = pd.DataFrame(lst)
+    st.dataframe(df)
 
 def get_extracted_smiles():
     r = requests.get(url = f'http://34.125.142.75:8009/{TOKEN}/extract')
