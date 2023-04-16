@@ -5,7 +5,6 @@ import numpy as np
 import os
 import errno
 import requests
-import hydralit_components as hc
 import time
 
 TOKEN = 987651234
