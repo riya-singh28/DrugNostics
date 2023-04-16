@@ -11,15 +11,10 @@ TOKEN = 987651234
 
 def upload_file():
     uploaded_file = st.file_uploader('Choose your .pdf file', type="pdf")
-    # user_input = st.text_input("Input Smiles")
-
-    st.info(uploaded_file)
 
     Submit = st.button(label='Submit')
 
     if Submit :
-        st.markdown("**The file is sucessfully Uploaded.**")
-
     # Save uploaded file to 'F:/tmp' folder.
         save_folder = './temp'
         try:
@@ -39,8 +34,7 @@ def upload_file():
             resp = requests.post(url=url, files=file)
             st.success(f'File {uploaded_file.name} is successfully saved!')
             data = get_extracted_smiles()
-            df = pd.DataFrame(data)
-            st.dataframe(df)
+            return data['smiles']
 
 def get_extracted_smiles():
     r = requests.get(url = f'http://34.125.142.75:8009/{TOKEN}/extract')
