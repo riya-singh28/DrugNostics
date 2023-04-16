@@ -33,11 +33,10 @@ def upload_file():
             w.write(uploaded_file.getvalue())
 
         if save_path.exists():
-            st.success(f'File {uploaded_file.name} is successfully saved!')
             url = f'http://34.125.142.75:8000/{TOKEN}/upload'
             file = {'file': open(save_path, 'rb')}
-            resp = requests.post(url=url, files=file) 
-            print(resp.json())
+            resp = requests.post(url=url, files=file)
+            st.success(f'File {uploaded_file.name} is successfully saved!')
 
 
 
