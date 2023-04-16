@@ -10,7 +10,7 @@ TOKEN = 987651234
 
 def upload_file():
     uploaded_file = st.file_uploader('Choose your .pdf file', type="pdf")
-    user_input = st.text_input("Input Smiles")
+    # user_input = st.text_input("Input Smiles")
 
     st.info(uploaded_file)
 
@@ -37,6 +37,12 @@ def upload_file():
             file = {'file': open(save_path, 'rb')}
             resp = requests.post(url=url, files=file)
             st.success(f'File {uploaded_file.name} is successfully saved!')
+            get_extracted_smiles()
+
+def get_extracted_smiles():
+    r = requests.get(url = f'http://34.125.142.75:8000/{TOKEN}/extract')
+    data = r.json()
+    print(data)
 
 
 
