@@ -69,7 +69,7 @@ def smile_evaluation():
         r = requests.get(url = f'http://34.125.142.75:8009/{TOKEN}/predict/{smile}/{model_name}')
         data = r.json()
         data = np.asarray(data)
-        print(data)
+        st.info(data)
         req_feat = data[index]
         feats_disc = np.asarray(feats)
         req_feats_disc = feats_disc[index]
