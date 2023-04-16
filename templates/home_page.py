@@ -23,10 +23,10 @@ def home_page():
     smiles = []
     if opt == 'Yes':
         smiles = [text_input()]
+        display_smiles(smiles_list=smiles)
     else:
         smiles = upload_file()
-    
-    display_smiles(smiles_list=smiles)
+        display_smiles(smiles_list=smiles)
 
     st.subheader("Authors")
     st.write("Riya Singh, EC Engg, National Institute of Technology Karnataka, India")
