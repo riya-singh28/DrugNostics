@@ -53,7 +53,6 @@ def smile_evaluation():
        'Injury, poisoning and procedural complications'))
     
     index = []
-    st.info(opt)
     for i in opt:
         ind = feature_list.index(i)
         index.append(ind)
@@ -64,6 +63,6 @@ def smile_evaluation():
     Submit = st.button(label='Submit')
     if Submit:
         model_name = "SIDER_GCN"
-        r = requests.get(url = f'http://34.125.142.75:8009/{TOKEN}/{smile}/{model_name}')
+        r = requests.get(url = f'http://34.125.142.75:8009/{TOKEN}/predict/{smile}/{model_name}')
         data = r.json()
         st.info(data['preds'])
