@@ -43,6 +43,7 @@ def upload_file():
 
 def get_extracted_smiles():
     r = requests.get(url = f'http://34.125.142.75:8000/{TOKEN}/extract')
+    print("waiting")
     data = r.json()
     print(data)
 
