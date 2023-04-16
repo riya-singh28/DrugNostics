@@ -35,7 +35,7 @@ def upload_file():
             w.write(uploaded_file.getvalue())
 
         if save_path.exists():
-            url = f'http://34.125.142.75:8000/{TOKEN}/upload'
+            url = f'http://34.125.142.75:8009/{TOKEN}/upload'
             file = {'file': open(save_path, 'rb')}
             resp = requests.post(url=url, files=file)
             st.success(f'File {uploaded_file.name} is successfully saved!')
@@ -44,7 +44,7 @@ def upload_file():
             st.dataframe(df)
 
 def get_extracted_smiles():
-    r = requests.get(url = f'http://34.125.142.75:8000/{TOKEN}/extract')
+    r = requests.get(url = f'http://34.125.142.75:8009/{TOKEN}/extract')
     print("waiting")
     data = r.json()
     return data
