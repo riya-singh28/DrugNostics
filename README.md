@@ -11,6 +11,7 @@ Python, Streamlit, Deepchem, RDKIT, FastAPI, Google Cloud Platform, Google Colab
 
 ## Installation steps: 
 None required! Just a very easy to use web application: https://ary2260-drugnostics-app-dev-r8dph4.streamlit.app/
+(server temporarily closed for maintanence)
 
 ## Product Video:
 https://www.canva.com/design/DAFgP6r3350/L8dfFX1I9iE2knp0xd-IsQ/edit?utm_content=DAFgP6r3350&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
